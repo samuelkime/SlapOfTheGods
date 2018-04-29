@@ -12,7 +12,7 @@ function ItemBuilder (name, modifier, description){
 var items = {
     armour:new ItemBuilder("Iron Armour", 0.5, "As they move into the Iron Age, the humans become harder to kill!(Halves damage)"),
     gunpowder:new ItemBuilder("Gunpowder", 2.0, "Why expend your energy smiting when the humans do it well enough themselves?(Doubles damage)"),
-    faith:new ItemBuilder("Faith", 1, "Does nothing, but leaves the humans feeling much better about your decision to end their existance.(No change)"),
+    faith:new ItemBuilder("Faith", 1, "Does nothing, but leaves the humans feeling much better about your decision to end their existance.(Removes modifier)"),
     nuke:new ItemBuilder("Nuclear Weapons", 10 ,"From the brilliant minds behind gunpowder, if you liked that, you will love this!(10x damage)"),
 
 
