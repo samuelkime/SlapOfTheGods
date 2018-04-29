@@ -3,6 +3,21 @@ var makeGods = document.getElementById("godProfile")
 
 var totalMod = 1
 
+function ItemBuilder (name, modifier, description){
+    this.name = name;
+    this.modifier = modifier;
+    this.description = description;
+}
+
+var items = {
+    armour:new ItemBuilder("Iron Armour", 0.5, "As they move into the Iron Age, the humans become harder to kill!(Halves damage)"),
+    gunpowder:new ItemBuilder("Gunpowder", 2.0, "Why expend your energy smiting when the humans do it well enough themselves?(Doubles damage)"),
+    faith:new ItemBuilder("Faith", 1, "Does nothing, but leaves the humans feeling much better about your decision to end their existance.(No change)"),
+    nuke:new ItemBuilder("Nuclear Weapons", 10 ,"From the brilliant minds behind gunpowder, if you liked that, you will love this!(10x damage)"),
+
+
+}
+
 var humans = {
     name: "Puny Humans",
     img: "/assets/pics/SDR_SGL_Peasants.png",
@@ -14,6 +29,7 @@ var odin = {
     name: "Odin, Eternal AllFather",
     img: "/assets/pics/odinImg.jpg",
     attackNames: ["Call Ravens"," Gungnir"," OdinForce"],
+    health: 100,
     items: []
 
 }
@@ -21,12 +37,14 @@ var zeus = {
     name: "Zeus, King of Mt. Olympus",
     img: "/assets/pics/zeusImg.jpg",
     attackNames: ["Lightning Bolt"," StormFall"," Pantheon's Fury"],
+    health: 100,
     items: []
 }
 var horus = {
     name: "Horus, God-King of the Sun",
     img: "/assets/pics/HorusImg.jpg",
     attackNames: ["Solar Blast"," Burning Skies"," God King's Rage"],
+    health: 100,
     items: []
 }
 
@@ -53,9 +71,10 @@ function chooseGod (playerChoice){
     </div>
         <div class="row d-flex justify-content-center">
             <div class="button-group d-flex justify-around" role="group" aria-label="Button Group">    
-              <button type="button" class="btn">Iron Armour</button>
-              <button type="button" class="btn">Gunpowder</button>
-              <button type="button" class="btn">Faith!</button>
+              <button type="button" class="btn" onclick="useItem('armour')">Iron Armour</button>
+              <button type="button" class="btn" onclick="useItem('gunpowder')">Gunpowder</button>
+              <button type="button" class="btn" onclick="useItem('faith')">Faith!</button>
+              <button type="button" class="btn" onclick="useItem('nuke')">Nuclear Winter</button>
             </div>
         </div>
   `;
@@ -64,7 +83,6 @@ function chooseGod (playerChoice){
   godTemplate = `
     <div class="row d-flex align-items-center flex-column">
       <h1>${god.name}</h1>
-      <p>Attacks: ${god.attackNames}</p>
     </div>
     <div class="row d-flex justify-content-center">
         <img src="${god.img}" alt="" height=400px width=270px>
@@ -92,4 +110,9 @@ function attack(damage){
     humanHits.innerHTML = "Wrath Endured: " + humans.hits
 }
 
-function useItem()
+function useItem(itemName){
+    var item = items[itemName]
+    totalMod = item.modifier
+}
+
+
