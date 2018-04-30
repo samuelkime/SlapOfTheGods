@@ -1,6 +1,7 @@
 var makeHumans = document.getElementById("humanity")
 var makeGods = document.getElementById("godProfile")
 
+//I would move this onto your humans object. It is a property that belongs to them and would provide just a little more organization.
 var totalMod = 1
 
 function ItemBuilder (name, modifier, description){
@@ -9,6 +10,7 @@ function ItemBuilder (name, modifier, description){
     this.description = description;
 }
 
+// The descriptions on these items are great, you should find a way to display them on the page!
 var items = {
     armour:new ItemBuilder("Iron Armour", 0.5, "As they move into the Iron Age, the humans become harder to kill!(Halves damage)"),
     gunpowder:new ItemBuilder("Gunpowder", 2.0, "Why expend your energy smiting when the humans do it well enough themselves?(Doubles damage)"),
@@ -54,6 +56,9 @@ var gods = []
 gods.push(odin, zeus, horus)
 
 
+// I would use this function as the kick off point(how you have it setup) 
+// then take the templates and move them into drawGod() and drawHumans() respectively. 
+// This is optional, but would separate concerns a little more.
 function chooseGod (playerChoice){
   var god = gods[playerChoice];
   
@@ -98,6 +103,8 @@ function chooseGod (playerChoice){
   makeGods.innerHTML = godTemplate
 }
 
+
+// Well done combining the attacks into one function
 function attack(damage){
     var humanHealth = document.getElementById("health")
     var humanHits = document.getElementById("hits")
@@ -110,6 +117,8 @@ function attack(damage){
     humanHits.innerHTML = "Wrath Endured: " + humans.hits
 }
 
+
+// This is nice because it only allows one "item" to be equipped essentially
 function useItem(itemName){
     var item = items[itemName]
     totalMod = item.modifier
